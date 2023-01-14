@@ -1,5 +1,3 @@
-## TTGO-T-Call support with PlatformIO
-
 # OpenHaystack BLE based Apple AirTag location
 
 Part of what I want to do is to check how the cellular performs in different locations nationally. 
