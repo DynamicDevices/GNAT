@@ -19,6 +19,8 @@
 #include "esp_log.h"
 #include "freertos/FreeRTOS.h"
 
+static bool _isAdvertising = false;
+
 static const char* LOG_TAG = "open_haystack";
 
 /** Callback function for BT events */
@@ -78,6 +80,7 @@ static void esp_gap_cb(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *par
                 ESP_LOGE(LOG_TAG, "Advertising start failed: %s", esp_err_to_name(err));
             } else {
                 ESP_LOGI(LOG_TAG, "Advertising has started.");
+                _isAdvertising = true;
             }
             break;
 
@@ -87,6 +90,7 @@ static void esp_gap_cb(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *par
             }
             else {
                 ESP_LOGI(LOG_TAG, "Stop adv successfully");
+                _isAdvertising = false;
             }
             break;
         default:
@@ -126,6 +130,11 @@ void set_payload_from_key(uint8_t *payload, uint8_t *public_key) {
 
 
 #include "esp32-hal-bt.h"
+
+bool isAdvertising()
+{
+    return _isAdvertising;
+}
 
 void openhaystack_main(void)
 {
