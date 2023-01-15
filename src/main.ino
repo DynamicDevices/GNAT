@@ -6,7 +6,7 @@
 extern "C" void openhaystack_main(void);
 extern "C" bool isAdvertising(void);
 
-#define GPIO_DEEP_SLEEP_DURATION 10
+#define GPIO_DEEP_SLEEP_DURATION 60
 
 void setup()
 {
